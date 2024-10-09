@@ -29,10 +29,4 @@ routes.delete('/', function(req, res) {
     .catch( (error) => response.error(req, res, error, 400) )
 })
 
-routes.get('/todos', function(req, res) {
-  controller.listar_todos()
-      .then((data) => response.success(req, res, data, 200))
-      .catch((error) => response.error(req, res, error, 400))
-})
-
 module.exports = routes
