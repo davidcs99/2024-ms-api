@@ -262,7 +262,7 @@ function guardar(usuario, accion) {
     var url =  '/usuario'; 
 
     if (accion !== "CREAR") {
-        var metodo =  "PUT"; 
+        metodo =  "PUT"; 
         url = `/usuario/${usuario["_id"]}`;
     }
 
