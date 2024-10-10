@@ -258,7 +258,14 @@ function guardar_usuario() {
  *  * @returns 
  */
 function guardar(usuario, accion) {
-    var metodo =  (accion === "CREAR") ? "POST" : "PUT"; 
+    var metodo =  "POST"
+    var url =  '/usuario'; 
+
+    if (accion !== "CREAR") {
+        var metodo =  "PUT"; 
+        url = `/usuario/${usuario["_id"]}`;
+    }
+
     return new Promise((resolve, reject) => {
         const request_options = {
             method: metodo,
@@ -266,11 +273,9 @@ function guardar(usuario, accion) {
                 'Content-Type': 'application/json' // Indicar que se envían datos JSON
             }, 
             body: JSON.stringify(usuario)
-        };
-        console.log("request_options", request_options);
-        
-        fetch('/usuario', request_options)
+        };        
+        fetch(url, request_options)
             .then((data) => resolve(data.json()))
-            .catch((error) => reject(`[error]: ${error}`));
+            .catch((error) => reject(`[error]: ${error}`));        
     })
 }
